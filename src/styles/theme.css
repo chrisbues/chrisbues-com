@@ -24,7 +24,95 @@
   }
 */
 
+/*
+  Palette: ink #151311, wine #4b262f, sand #eed3ba.
+  Body face is Geist (astro.config.mjs). Wine is the single accent; in
+  light mode it also carries headings, the header band, tags and footer.
+*/
+
 :root {
+	/* Typography */
+	--font-weight-display: 700;
+	--tracking-tight: -0.025em;
+	--tracking-snug: -0.015em;
+
+	/* Colors */
+	--color-bg: light-dark(#f8efe6, #151311);
+	--color-bg-subtle: light-dark(#f3e6d9, #1a1715);
+	--color-surface: light-dark(#eed3ba, #4b262f);
+	--color-text: light-dark(#151311, #eed3ba);
+	--color-text-secondary: light-dark(#5a4a42, #c9b29c);
+	--color-muted: light-dark(#6e5b50, #9c8676);
+	--color-border: light-dark(#e3cdb8, #332b28);
+	--color-border-subtle: light-dark(#efe2d4, #241f1d);
+	--color-brand: light-dark(#4b262f, #d9a3ae);
+	--color-brand-hover: light-dark(#2e161c, #ecc4cc);
+	--color-on-brand: light-dark(#eed3ba, #151311);
+	--color-heading: light-dark(#4b262f, #eed3ba);
+}
+
+/*
+  Light-mode values for browsers without light-dark() (Safari < 17.5).
+  Without this they fall back to the template defaults in tokens.css.
+*/
+@supports not (color: light-dark(#000, #fff)) {
+	:root {
+		--color-bg: #f8efe6;
+		--color-bg-subtle: #f3e6d9;
+		--color-surface: #eed3ba;
+		--color-text: #151311;
+		--color-text-secondary: #5a4a42;
+		--color-muted: #6e5b50;
+		--color-border: #e3cdb8;
+		--color-border-subtle: #efe2d4;
+		--color-brand: #4b262f;
+		--color-brand-hover: #2e161c;
+		--color-on-brand: #eed3ba;
+		--color-heading: #4b262f;
+	}
+}
+
+h1,
+h2,
+h3 {
+	color: var(--color-heading);
+}
+
+/*
+  Header, footer and tags are styled by scoped component CSS, which
+  outranks plain selectors here. Re-pointing tokens on the element
+  itself lets that CSS pick up the wine without fighting specificity.
+*/
+.site-header {
+	border-top: 4px solid #4b262f;
+}
+
+.site-title {
+	--color-text: var(--color-heading);
+}
+
+.site-footer {
+	--color-bg: #eed3ba;
+	--color-bg-subtle: #4b262f;
+	--color-surface: #3a1d24;
+	--color-border: #6b3a46;
+	--color-border-subtle: #4b262f;
+	--color-text: #eed3ba;
+	--color-text-secondary: #e2c6ad;
+	--color-muted: #e2c6ad;
+	--color-brand: #eed3ba;
+	--color-brand-hover: #ffffff;
+}
+
+.site-footer .theme-btn.active {
+	--color-text: #4b262f;
+}
+
+.meta-tag {
+	--color-surface: #4b262f;
+	--color-border: #2e161c; /* hover background */
+	--color-text: #eed3ba;
+	--color-text-secondary: #eed3ba;
 }
 
 .nav-admin {
